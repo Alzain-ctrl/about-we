@@ -1,25 +1,498 @@
-<!DOCTYPEhtml>
-<html>
-  <head>
-    <title>VII GREAT</title>
-    <style>
-      img {
-        width: 100px;
-        border-radius: 50px
-        float: left;
-        margin-right: 10px;
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Class 7 — Digital Hub</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1f3a;
+      color: white;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(11, 31, 58, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #60a5fa;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #60a5fa;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 50px;
+
+      background:
+        radial-gradient(circle at top right, #2563eb55, transparent 35%),
+        radial-gradient(circle at bottom left, #22c55e22, transparent 30%),
+        #0b1f3a;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #2563eb22;
+      border: 1px solid #2563eb;
+      padding: 8px 18px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      color: #93c5fd;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 8vw, 85px);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+      color: #60a5fa;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 25px;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #1d4ed8;
+    }
+
+    /* SECTION */
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 90px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 35px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #94a3b8;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #102a4c;
+      padding: 25px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #2563eb;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #93c5fd;
+    }
+
+    .card p {
+      color: #cbd5e1;
+    }
+
+    .icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    /* SCHEDULE */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #102a4c;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ffffff12;
+    }
+
+    th {
+      background: #2563eb;
+    }
+
+    td {
+      color: #dbeafe;
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery-item {
+      height: 180px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      font-size: 40px;
+      transition: 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+
+    /* ANNOUNCEMENT */
+    .announcement {
+      background: #102a4c;
+      padding: 25px;
+      border-left: 5px solid #22c55e;
+      border-radius: 10px;
+    }
+
+    .announcement h3 {
+      color: #86efac;
+      margin-bottom: 8px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #07172b;
+      color: #94a3b8;
+    }
+
+    footer strong {
+      color: #60a5fa;
+    }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
       }
-    </style>
-  </head>
-  <body>
-    <h1>About we</h1>
-    <img src="vii.png">
-    <p>Ketua Kelas: Alzain Kholis</p>
-    <p></p>Wakil Ketua: M. Alif</p>
-    <p>Bendahara 1: Aira Syahraini P.</p>
-    <p>Bendahara 2: Ifqiyatu Soleha</p>
-    <p>Sekertaris 1: Shaika M.</p>
-    <p>Sekertaris 2: Siti Masrifah</p>
-    <p>Sekertaris 3: Fatmawati</p>
-  </body>
-</html>
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">CLASS 7</div>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#achievement">Achievement</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        ✦ CLASS 7 DIGITAL HUB
+      </div>
+
+      <h1>
+        Welcome to <span>Class 7</span>
+      </h1>
+
+      <p>
+        Learn. Grow. Achieve.
+        <br>
+        Satu kelas, satu cerita, satu perjalanan.
+      </p>
+
+      <a href="#about" class="btn">
+        Explore Class →
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="section-title">
+      <h2>About Our Class</h2>
+      <p>Kenalan lebih dekat dengan kelas kita.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">👨‍🏫</div>
+        <h3>Wali Kelas</h3>
+        <p>Irvaniah</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">👑</div>
+        <h3>Ketua Kelas</h3>
+        <p>Alzain k.s.</p>
+      </div>
+
+     <div class="card">
+        <div class="icon">👑</div>
+        <h3>Bendahara</h3>
+        <p>
+					1. Aira s.p.<br>
+					2. Ifqiyatu s.
+				</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">👑</div>
+        <h3>Sekretaris</h3>
+        <p>
+					1. Sheika m.
+					2. S. Masrifah
+					3. Fatmawati 
+				</p>
+      </div>
+			
+      <div class="card">
+        <div class="icon">👥</div>
+        <h3>Students</h3>
+        <p>36 Students</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎯</div>
+        <h3>Our Motto</h3>
+        <p>"No Drama. Just Progress."</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCHEDULE -->
+  <section id="schedule">
+
+    <div class="section-title">
+      <h2>Class Schedule</h2>
+      <p>Jadwal pelajaran kelas kita.</p>
+    </div>
+
+    <div class="table-container">
+
+      <table>
+
+        <tr>
+          <th>Hari</th>
+          <th>Pelajaran</th>
+          <th>Jam</th>
+        </tr>
+
+        <tr>
+          <td>Senin</td>
+          <td>Upacara</td>
+          <td>07:20-08:00</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>SKI</td>
+          <td>08:20-10:00</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>ISTIRAHAT</td>
+          <td>10:20-11:00</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>B. Indonesia</td>
+          <td>11:00-12:20</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>ISTIRAHAT</td>
+          <td>12:40-13:00</td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>PKN</td>
+          <td>13:00-14:40</td>
+        </tr>
+
+        <tr>
+          <td>Selasa</td>
+          <td>Bahasa Inggris</td>
+          <td>07:00</td>
+        </tr>
+
+        <tr>
+          <td>Rabu</td>
+          <td>IPA</td>
+          <td>07:00</td>
+        </tr>
+
+        <tr>
+          <td>Kamis</td>
+          <td>Bahasa Indonesia</td>
+          <td>07:00</td>
+        </tr>
+
+        <tr>
+          <td>Jumat</td>
+          <td>IPS</td>
+          <td>07:00</td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </section>
+
+	
+  <!-- ANNOUNCEMENT -->
+  <section>
+
+    <div class="section-title">
+      <h2>Announcement</h2>
+      <p>Informasi terbaru kelas.</p>
+    </div>
+
+    <div class="announcement">
+
+      <h3>📢 Class Announcement</h3>
+
+      <p>
+        Jangan lupa membawa buku pelajaran
+        dan mengerjakan tugas yang diberikan guru.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 <strong>Class 7 Digital Hub</strong>
+    </p>
+
+    <p>
+      Built with ❤️ by Class 7
+    </p>
+
+  </footer>
+
+</body>
+  </html>
